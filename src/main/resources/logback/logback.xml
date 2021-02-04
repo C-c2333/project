@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="60 seconds" debug="false">
+    <contextName>logback</contextName>
+    <!-- 日志输出到文件格式 -->
+    <property name="logPattern" value="%-12(%d{yyyy-MM-dd HH:mm:ss.SSS}) |-%-5level [%thread] %c [%L] -| %msg%n"/>
+    <!-- test日志输出文件路径 -->
+    <property name="testLogPath" value="F:\\gitHub\\project\\test.log"/>
+    <!-- pro日志输出文件路径 -->
+    <property name="proLogPath" value="/opt/test/log"/>
+
+    <!-- 测试环境输出方式 -->
+    <springProfile name="test">
+        <!-- 每天产生一个文件 -->
+        <appender name="testFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <!-- 文件路径 -->
+            <file>${testLogPath}</file>
+            <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+                <!-- 文件名称 -->
+                <fileNamePattern>${testLogPath}/info.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+                <!-- 文件最大保存历史数量 -->
+                <MaxHistory>100</MaxHistory>
+                <!-- 文件最大保存的大小-->
+                <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                    <maxFileSize>50MB</maxFileSize>
+                </timeBasedFileNamingAndTriggeringPolicy>
+            </rollingPolicy>
+            <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+                <pattern>${logPattern}</pattern>
+                <charset>UTF-8</charset>
+            </encoder>
+        </appender>
+        <!-- logback有5种级别，level 分别是 TRACE < DEBUG < INFO < WARN < ERROR-->
+        <root level="INFO">
+            <appender-ref ref="testFile"/>
+        </root>
+
+    </springProfile>
+
+    <!-- 生产环境输出方式 -->
+    <springProfile name="prod">
+        <appender name="prodFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <file>${proLogPath}</file>
+            <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+                <fileNamePattern>${proLogPath}/warn.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+                <MaxHistory>100</MaxHistory>
+                <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                    <maxFileSize>50MB</maxFileSize>
+                </timeBasedFileNamingAndTriggeringPolicy>
+            </rollingPolicy>
+            <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+                <pattern>${logPattern}</pattern>
+                <charset>UTF-8</charset>
+            </encoder>
+        </appender>
+        <!-- logback有5种级别，level 分别是 TRACE < DEBUG < INFO < WARN < ERROR-->
+        <root level="warn">
+            <appender-ref ref="prodFile"/>
+        </root>
+    </springProfile>
+</configuration>

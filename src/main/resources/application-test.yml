@@ -1,0 +1,17 @@
+server:
+  port: 8200
+spring:
+  redis:
+    database: 0
+    host: 127.0.0.1
+    port: 6379 #端口
+    password:
+    timeout: 3000ms
+    lettuce:
+      pool:
+        max-active: 20
+        max-wait: 60000ms
+        max-idle: 20
+        min-idle: 1
+logging:
+  config: classpath:logback/logback.xml
