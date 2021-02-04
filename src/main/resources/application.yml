@@ -1,0 +1,7 @@
+server:
+  port: 7013
+  tomcat:
+    uri-encoding: utf-8
+  # 应用的访问路径
+  servlet:
+    context-path: /
