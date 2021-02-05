@@ -9,15 +9,15 @@
     <property name="proLogPath" value="F:\\gitHub\\project\\prod.log"/>
 
     <!--输出到控制台-->
-    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+   <!-- <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
             <pattern>${logPattern}</pattern>
         </encoder>
-    </appender>
+    </appender>-->
     <!--输出到控制台的日志等级-->
-    <root level="INFO">
+  <!--  <root level="debug">
         <appender-ref ref="console" />
-    </root>
+    </root>-->
 
     <!-- 测试环境输出方式 -->
     <springProfile name="test">
