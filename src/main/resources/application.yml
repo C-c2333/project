@@ -9,3 +9,4 @@ spring:
     name: project
   profiles:
     active: dev
+url: 123456
