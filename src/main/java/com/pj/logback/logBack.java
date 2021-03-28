@@ -17,6 +17,7 @@ import javax.annotation.PostConstruct;
 @Component
 @Slf4j
 public class logBack {
+
     @PostConstruct
     public void pringLog(){
         log.trace("trace");
