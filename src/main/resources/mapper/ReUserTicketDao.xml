@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pj.mybatisPlus.dao.ReUserTicketDao">
+
+    <resultMap id="BaseResultMap" type="com.pj.mybatisPlus.entity.ReUserTicket">
+        <!--@Table re_user_ticket-->
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="wechatOpenId" column="wechat_open_id" jdbcType="VARCHAR"/>
+        <result property="userName" column="user_name" jdbcType="VARCHAR"/>
+        <result property="phone" column="phone" jdbcType="VARCHAR"/>
+        <result property="state" column="state" jdbcType="INTEGER"/>
+        <result property="status" column="status" jdbcType="VARCHAR"/>
+        <result property="experienceId" column="experience_id" jdbcType="INTEGER"/>
+        <result property="distributionId" column="distribution_id" jdbcType="INTEGER"/>
+        <result property="resourceId" column="resource_id" jdbcType="INTEGER"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+        <result property="zygw" column="zygw" jdbcType="VARCHAR"/>
+        <result property="isDelete" column="is_delete" jdbcType="INTEGER"/>
+        <result property="code" column="code" jdbcType="VARCHAR"/>
+        <result property="createrId" column="creater_id" jdbcType="INTEGER"/>
+        <result property="createrName" column="creater_name" jdbcType="VARCHAR"/>
+        <result property="rootDataArea" column="root_data_area" jdbcType="VARCHAR"/>
+        <result property="issueTime" column="issue_time" jdbcType="TIMESTAMP"/>
+        <result property="collectionTime" column="collection_time" jdbcType="TIMESTAMP"/>
+        <result property="destroyTime" column="destroy_time" jdbcType="TIMESTAMP"/>
+        <result property="expiredTime" column="expired_time" jdbcType="TIMESTAMP"/>
+        <result property="sysGuid" column="sys_guid" jdbcType="VARCHAR"/>
+        <result property="startTime" column="start_time" jdbcType="TIMESTAMP"/>
+        <result property="entTime" column="ent_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="BaseResultMap">
+        select
+          id, wechat_open_id, user_name, phone, state, status, experience_id, distribution_id, resource_id, create_time, update_time, zygw, is_delete, code, creater_id, creater_name, root_data_area, issue_time, collection_time, destroy_time, expired_time, sys_guid, start_time, ent_time
+        from re_user_ticket
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="BaseResultMap">
+        select
+          id, wechat_open_id, user_name, phone, state, status, experience_id, distribution_id, resource_id, create_time, update_time, zygw, is_delete, code, creater_id, creater_name, root_data_area, issue_time, collection_time, destroy_time, expired_time, sys_guid, start_time, ent_time
+        from re_user_ticket
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="BaseResultMap">
+        select
+          id, wechat_open_id, user_name, phone, state, status, experience_id, distribution_id, resource_id, create_time, update_time, zygw, is_delete, code, creater_id, creater_name, root_data_area, issue_time, collection_time, destroy_time, expired_time, sys_guid, start_time, ent_time
+        from re_user_ticket
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="wechatOpenId != null and wechatOpenId != ''">
+                and wechat_open_id = #{wechatOpenId}
+            </if>
+            <if test="userName != null and userName != ''">
+                and user_name = #{userName}
+            </if>
+            <if test="phone != null and phone != ''">
+                and phone = #{phone}
+            </if>
+            <if test="state != null">
+                and state = #{state}
+            </if>
+            <if test="status != null and status != ''">
+                and status = #{status}
+            </if>
+            <if test="experienceId != null">
+                and experience_id = #{experienceId}
+            </if>
+            <if test="distributionId != null">
+                and distribution_id = #{distributionId}
+            </if>
+            <if test="resourceId != null">
+                and resource_id = #{resourceId}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime}
+            </if>
+            <if test="zygw != null and zygw != ''">
+                and zygw = #{zygw}
+            </if>
+            <if test="isDelete != null">
+                and is_delete = #{isDelete}
+            </if>
+            <if test="code != null and code != ''">
+                and code = #{code}
+            </if>
+            <if test="createrId != null">
+                and creater_id = #{createrId}
+            </if>
+            <if test="createrName != null and createrName != ''">
+                and creater_name = #{createrName}
+            </if>
+            <if test="rootDataArea != null and rootDataArea != ''">
+                and root_data_area = #{rootDataArea}
+            </if>
+            <if test="issueTime != null">
+                and issue_time = #{issueTime}
+            </if>
+            <if test="collectionTime != null">
+                and collection_time = #{collectionTime}
+            </if>
+            <if test="destroyTime != null">
+                and destroy_time = #{destroyTime}
+            </if>
+            <if test="expiredTime != null">
+                and expired_time = #{expiredTime}
+            </if>
+            <if test="sysGuid != null and sysGuid != ''">
+                and sys_guid = #{sysGuid}
+            </if>
+            <if test="startTime != null">
+                and start_time = #{startTime}
+            </if>
+            <if test="entTime != null">
+                and ent_time = #{entTime}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into re_user_ticket(wechat_open_id, user_name, phone, state, status, experience_id, distribution_id, resource_id, create_time, update_time, zygw, is_delete, code, creater_id, creater_name, root_data_area, issue_time, collection_time, destroy_time, expired_time, sys_guid, start_time, ent_time)
+        values (#{wechatOpenId}, #{userName}, #{phone}, #{state}, #{status}, #{experienceId}, #{distributionId}, #{resourceId}, #{createTime}, #{updateTime}, #{zygw}, #{isDelete}, #{code}, #{createrId}, #{createrName}, #{rootDataArea}, #{issueTime}, #{collectionTime}, #{destroyTime}, #{expiredTime}, #{sysGuid}, #{startTime}, #{entTime})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update re_user_ticket
+        <set>
+            <if test="wechatOpenId != null and wechatOpenId != ''">
+                wechat_open_id = #{wechatOpenId},
+            </if>
+            <if test="userName != null and userName != ''">
+                user_name = #{userName},
+            </if>
+            <if test="phone != null and phone != ''">
+                phone = #{phone},
+            </if>
+            <if test="state != null">
+                state = #{state},
+            </if>
+            <if test="status != null and status != ''">
+                status = #{status},
+            </if>
+            <if test="experienceId != null">
+                experience_id = #{experienceId},
+            </if>
+            <if test="distributionId != null">
+                distribution_id = #{distributionId},
+            </if>
+            <if test="resourceId != null">
+                resource_id = #{resourceId},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+            <if test="zygw != null and zygw != ''">
+                zygw = #{zygw},
+            </if>
+            <if test="isDelete != null">
+                is_delete = #{isDelete},
+            </if>
+            <if test="code != null and code != ''">
+                code = #{code},
+            </if>
+            <if test="createrId != null">
+                creater_id = #{createrId},
+            </if>
+            <if test="createrName != null and createrName != ''">
+                creater_name = #{createrName},
+            </if>
+            <if test="rootDataArea != null and rootDataArea != ''">
+                root_data_area = #{rootDataArea},
+            </if>
+            <if test="issueTime != null">
+                issue_time = #{issueTime},
+            </if>
+            <if test="collectionTime != null">
+                collection_time = #{collectionTime},
+            </if>
+            <if test="destroyTime != null">
+                destroy_time = #{destroyTime},
+            </if>
+            <if test="expiredTime != null">
+                expired_time = #{expiredTime},
+            </if>
+            <if test="sysGuid != null and sysGuid != ''">
+                sys_guid = #{sysGuid},
+            </if>
+            <if test="startTime != null">
+                start_time = #{startTime},
+            </if>
+            <if test="entTime != null">
+                ent_time = #{entTime},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from re_user_ticket where id = #{id}
+    </delete>
+
+</mapper>
