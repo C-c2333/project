@@ -14,6 +14,9 @@ public class testTree {
         //模拟从数据库查询出来
         List<Menu> menus = Arrays.asList(
                 new Menu(1, "根节点", 0),
+                new Menu(13, "根节点13", 0),
+                new Menu(14, "根节点14", 13),
+                new Menu(15, "根节点15", 14),
                 new Menu(2, "子节点1", 1),
                 new Menu(3, "子节点1.1", 2),
                 new Menu(4, "子节点1.2", 2),
