@@ -7,7 +7,6 @@ import java.util.List;
 
 /**
  * Menu
- *
  * @author cc
  */
 @Data
