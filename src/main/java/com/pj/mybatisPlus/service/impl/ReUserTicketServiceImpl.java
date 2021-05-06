@@ -29,7 +29,6 @@ public class ReUserTicketServiceImpl  implements ReUserTicketService {
     @Override
     public ReUserTicket queryById(Integer id) {
         ReUserTicket reUserTicket = reUserTicketDao.selectById(653);
-
         return this.reUserTicketDao.queryById(653);
     }
 
