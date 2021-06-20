@@ -23,7 +23,7 @@ spring:
     password: 123456
   redis:
     database: 0
-    host: 127.0.0.1
+    host: localhost
     port: 6379 #端口
     password:
     timeout: 3000ms
@@ -36,7 +36,7 @@ spring:
 #mybatis
 mybatis-plus:
   typeAliasesPackage: com.pj.mybatisPlus.entity
-  mapper-locations: classpath*:mapper/*Dao.xml
+  mapper-locations: classpath*:mapper/*.xml
   global-config:
     id-type: auto
     call-setters-on-nulls: true

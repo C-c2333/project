@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pj.mybatisPlus.dao.StudentDao">
+
+    <resultMap id="associationBaseResultMap" type="com.pj.mybatisPlus.entity.Student">
+        <id property="id" column="id" jdbcType="INTEGER"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="tid" column="tid" jdbcType="INTEGER"/>
+        <!--
+            association：
+                    property:映射数据库列的字段或属性。如果JavaBean 的属性与给定的名称匹配，就会使用匹配的名字。
+                             否则，MyBatis 将搜索给定名称的字段。两种情况下您都可以使用逗点的属性形式。
+                             比如，您可以映射到”username”，也可以映射到更复杂点的”address.street.number”。
+
+                    column:数据库的列名或者列标签别名。与传递给resultSet.getString(columnName)的参数名称相同。
+                           注意： 在处理组合键时，您可以使用column= “{prop1=col1,prop2=col2}”这样的语法，设置多个列名传入到嵌套查询语句。
+                           这就会把prop1和prop2设置到目标嵌套选择语句的参数对象中。
+
+                    javaType:完整java类名或别名(参考上面的内置别名列表)。
+                             如果映射到一个JavaBean，那MyBatis 通常会自行检测到。
+                             然而，如果映射到一个HashMap，那您应该明确指定javaType 来确保所需行为。
+                             jdbcType支持的JDBC类型列表中列出的JDBC类型。这个属性只在insert,update 或delete 的时候针对允许空的列有用。
+                             JDBC 需要这项，但MyBatis 不需要。如果您直接编写JDBC代码，在允许为空值的情况下需要指定这个类型。
+
+                    ofType:ofType用来指定对象的所属javaBean类,也就是尖括号的泛型private List<Post> posts。
+
+                    typeHandler:我们已经在文档中讨论过默认类型处理器。使用这个属性可以重写默认类型处理器。
+                                它的值可以是一个TypeHandler实现的完整类名，也可以是一个类型别名。
+
+            联合嵌套选择（Nested Select for Association）
+                    select:通过这个属性，通过ID引用另一个加载复杂类型的映射语句。
+                           从指定列属性中返回的值，将作为参数设置给目标select 语句。
+                           表格下方将有一个例子。注意：在处理组合键时，您可以使用column=”{prop1=col1,prop2=col2}”这样的语法，
+                           设置多个列名传入到嵌套语句。这就会把prop1和prop2设置到目标嵌套语句的参数对象中。
+
+            使用方式:<select id="oneStuden" resultMap="BaseResultMap">
+            resultMap:返回指定的 resultMap编写好的BaseResultMap，并指定association的select查询
+    -->
+<!--
+        <association property="teacher" column="{tid=tid,ttid=tid}" javaType="teacher" select="selectteacher"/>
+-->
+        <association property="teacher" column="tid" javaType="teacher">
+            <id column="t2id" property="id"/>
+            <result column="t2name" property="name"/>
+        </association>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,name,tid
+    </sql>
+    <select id="oneStuden" resultMap="associationBaseResultMap">
+        select * from student
+    </select>
+
+    <select id="selectteacher" resultType="teacher">
+        select * from teacher where id = #{tid} and id= ${ttid}
+    </select>
+
+    <select id="studenAndTeacher" resultMap="associationBaseResultMap">
+        select
+        t1.id,
+        t1.name,
+        t2.id t2id,
+        t2.name t2name
+        from
+        student t1,teacher t2 where t1.tid = t2.id
+    </select>
+
+</mapper>
