@@ -33,4 +33,7 @@
     <select id="student" resultType="student">
         select * from student where tid = #{student}
     </select>
+    <select id="geTeacherListBigData" resultMap="BaseResultMap">
+        select * from  teacher
+    </select>
 </mapper>

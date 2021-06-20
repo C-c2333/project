@@ -15,4 +15,6 @@ public interface TeacherService extends IService<Teacher> {
 
     List<Teacher> teacherList();
 
+    List<Teacher> geTeacherListBigData();
+
 }
