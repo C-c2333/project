@@ -1,16 +1,47 @@
 package com.pj.stream;
 
+import cn.hutool.core.convert.Convert;
+import cn.hutool.core.date.DateUtil;
+import cn.hutool.core.util.ObjectUtil;
+import cn.hutool.http.HttpRequest;
 import com.alibaba.fastjson.JSON;
 import org.testng.annotations.Test;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
+import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Test
 public class testTree {
     public void test() {
+        Date s = null;
+        String createdOn1 = DateUtil.format(s, "yyyy-MM-dd");
+        String commitTime1 = DateUtil.format(new Date(), "yyyy-MM-dd");
+        if (createdOn1.equals(commitTime1)) {
+            System.err.println(111);
+        }
+    /*    String result2 = HttpRequest.post("https://app2.gxgentle.com:28888/common/service-om/online-marketing/api/wx/userPortrait/userPortrait")
+                .body("{\n" +
+                        "    \"encrypt\": \"131355b67b77b7b660712518610b13c7d70384b69b55fe020\",\n" +
+                        "    \"params\": {\n" +
+                        "        \"city\": \"beihai\",\n" +
+                        "        \"commitTime\": 1620912649000,\n" +
+                        "        \"unitId\": \"5637462352\",\n" +
+                        "        \"solutionType\": \"信息流推广\",\n" +
+                        "        \"unitName\": \"ocpc二阶-意图词\",\n" +
+                        "        \"url\": \"https://qianhu.wejianzhan.com/site/qianhu.wejianzhan.com/7a321fdb-0fd8-4cfb-ab11-40b36cee2fe4\",\n" +
+                        "        \"cluePhoneNumber\": \"17731343392\",\n" +
+                        "        \"groupName\": \"冠山海\",\n" +
+                        "        \"phone\": \"17731343392\",\n" +
+                        "        \"name\": \"北部湾\",\n" +
+                        "        \"flowChannelName\": \"信息流推广\"\n" +
+                        "    }\n" +
+                        "}")
+                .execute().body();
+        System.err.println(result2);*/
+        /*
         //模拟从数据库查询出来
         List<Menu> menus = Arrays.asList(
                 new Menu(1, "根节点", 0),
@@ -38,7 +69,7 @@ public class testTree {
                 }
         ).collect(Collectors.toList());
         System.out.println("-------转json输出结果-------");
-        System.out.println(JSON.toJSON(collect));
+        System.out.println(JSON.toJSON(collect));*/
     }
 
     /**
@@ -59,4 +90,6 @@ public class testTree {
         ).collect(Collectors.toList());
         return children;
     }
+
+
 }

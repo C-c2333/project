@@ -32,13 +32,14 @@ import java.util.List;
 @RequestMapping("redisDemo")
 public class redisDemo {
 
-    private IRedisService redisService;
+ //   private IRedisService redisService;
 
-   // @PostConstruct
+    @PostConstruct
     public void addRedis(){
-        redisService.set("1",11111);
+        // redisService.set("1",11111);
+     //   redisService.lPush("1", 333);
 
-        log.info("hSet添加");
+       /* log.info("hSet添加");
         ArrayList<Integer> strings = new ArrayList<>();
         strings.add(1);
         redisService.hSet("hset","hset1", strings);
@@ -52,7 +53,7 @@ public class redisDemo {
         System.err.println(JSON.toJSON(hset));
         hset = redisService.hGetAll("hset");
         log.info("hGetAll获取所有");
-        System.err.println(JSON.toJSON(hset));
+        System.err.println(JSON.toJSON(hset));*/
 
     }
 
